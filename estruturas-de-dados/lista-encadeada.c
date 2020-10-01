@@ -35,7 +35,7 @@ struct no *adicionarNo(struct no *lista, int info)
   return novoNo;
 }
 
-char *buscarNo(struct no *lista, int info)
+void buscarNo(struct no *lista, int info)
 {
   if (lista)
   {
@@ -43,7 +43,8 @@ char *buscarNo(struct no *lista, int info)
     {
       if (lista->info == info)
       {
-        return printf("%d foi achado no endereco de memoria %p. \n", lista->info, lista);
+        printf("%d foi achado no endereco de memoria %p. \n", lista->info, lista);
+        return;
       }
       lista = lista->proximo;
     } while (lista);
@@ -58,5 +59,5 @@ void main()
   lista = adicionarNo(lista, 45);
   lista = adicionarNo(lista, 90);
   mostrarLista(lista);
-  buscarNo(lista, 33);
+  buscarNo(lista, 90);
 }
