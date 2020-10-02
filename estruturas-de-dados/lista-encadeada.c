@@ -1,18 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
 
-typedef struct
+typedef struct no
 {
   int info;
   struct no *proximo;
-} no;
+} No;
 
-no *iniciarLista()
+No *iniciarLista()
 {
   return NULL;
 }
 
-void mostrarLista(no *lista)
+void mostrarLista(No *lista)
 {
   printf("Mostrando a lista \n");
   if (lista)
@@ -27,23 +28,49 @@ void mostrarLista(no *lista)
     printf("Lista vazia \n");
 }
 
-no *adicionarNo(no *lista, int info)
+No *adicionarNo(No *lista, int info)
 {
-  no *novoNo = (no *)malloc(sizeof(no));
+  No *novoNo = (No *)malloc(sizeof(No));
   novoNo->info = info;
   novoNo->proximo = lista;
   return novoNo;
 }
 
-void buscarNo(no *lista, int info)
+No *removerNo(No *lista, int info)
 {
+  No *anterior = NULL, *aux = lista;
+  while (aux != NULL && aux->info != info)
+  {
+    anterior = aux;
+    aux = aux->proximo;
+  }
+  if (!aux)
+  {
+    return lista;
+  }
+  if (!anterior)
+  {
+    lista = aux->proximo;
+  }
+  else
+  {
+    anterior->proximo = aux->proximo;
+  }
+  free(aux);
+  return lista;
+}
+
+void buscarNo(No *lista, int info)
+{
+  int contagem = 0;
   if (lista)
   {
     do
     {
+      contagem++;
       if (lista->info == info)
       {
-        printf("%d foi achado no endereco de memoria %p. \n", lista->info, lista);
+        printf("%d foi achado no endereco de memoria %p e na posicao %d. \n", lista->info, lista, contagem);
         return;
       }
       lista = lista->proximo;
@@ -55,9 +82,12 @@ void buscarNo(no *lista, int info)
 void main()
 {
   setlocale(LC_ALL, "");
-  no *lista = iniciarLista();
-  lista = adicionarNo(lista, 45);
+  No *lista = iniciarLista();
   lista = adicionarNo(lista, 90);
+  lista = adicionarNo(lista, 45);
+  lista = adicionarNo(lista, 888);
   mostrarLista(lista);
+  buscarNo(lista, 90);
+  lista = removerNo(lista, 90);
   buscarNo(lista, 90);
 }
