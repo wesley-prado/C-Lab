@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <locale.h>
 
-struct no
+typedef struct
 {
   int info;
   struct no *proximo;
-};
+} no;
 
-struct no *iniciarLista()
+no *iniciarLista()
 {
   return NULL;
 }
 
-void mostrarLista(struct no *lista)
+void mostrarLista(no *lista)
 {
   printf("Mostrando a lista \n");
   if (lista)
@@ -27,15 +27,15 @@ void mostrarLista(struct no *lista)
     printf("Lista vazia \n");
 }
 
-struct no *adicionarNo(struct no *lista, int info)
+no *adicionarNo(no *lista, int info)
 {
-  struct no *novoNo = (struct no *)malloc(sizeof(struct no));
+  no *novoNo = (no *)malloc(sizeof(no));
   novoNo->info = info;
   novoNo->proximo = lista;
   return novoNo;
 }
 
-void buscarNo(struct no *lista, int info)
+void buscarNo(no *lista, int info)
 {
   if (lista)
   {
@@ -55,7 +55,7 @@ void buscarNo(struct no *lista, int info)
 void main()
 {
   setlocale(LC_ALL, "");
-  struct no *lista = iniciarLista();
+  no *lista = iniciarLista();
   lista = adicionarNo(lista, 45);
   lista = adicionarNo(lista, 90);
   mostrarLista(lista);
