@@ -8,7 +8,7 @@ typedef struct no
   struct no *proximo;
 } No;
 
-No *iniciarLista()
+No *iniciarLista(void)
 {
   return NULL;
 }

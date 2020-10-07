@@ -12,7 +12,7 @@ typedef struct pilha
   No *topo;
 } Pilha;
 
-Pilha *iniciarPilha()
+Pilha *iniciarPilha(void)
 {
   Pilha *nova_pilha = (Pilha *)malloc(sizeof(Pilha));
   nova_pilha->topo = NULL;
