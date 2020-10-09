@@ -26,8 +26,7 @@ void adicionar(Arv *raiz, int valor)
     }
     else
     {
-      Arv *p = iniciar(valor);
-      raiz->sad = p;
+      raiz->sad = iniciar(valor);
     }
   }
   if (valor < raiz->info)
@@ -38,8 +37,7 @@ void adicionar(Arv *raiz, int valor)
     }
     else
     {
-      Arv *p = iniciar(valor);
-      raiz->sae = p;
+      raiz->sae = iniciar(valor);
     }
   }
   else
